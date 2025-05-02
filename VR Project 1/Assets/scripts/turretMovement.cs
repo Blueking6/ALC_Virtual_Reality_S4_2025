@@ -5,15 +5,25 @@ using UnityEngine;
 public class turretTurn : MonoBehaviour
 {
     public int maxRotationSpeed;
-    public GameObject 
-    public JoystickControl joystickcontrol;
+    public GameObject JoystickA;
+    public GameObject JoystickB;
+    public float joystickAngleX;
+    public float joystickAngleY;
     
     void Start() {
-        joystickcontrol = ;
+        
     }
     void Update() {
-        float angleXJoy = joystickcontrol.angleX;
-        transform.Rotate(0,angleXJoy * maxRotationSpeed * Time.deltaTime,0);
+        joystickAngleX = JoystickA.transform.Find("Hinge").rotation.x;
+        joystickAngleY = JoystickB.transform.Find("Hinge").rotation.x;
+        Debug.Log(joystickAngleX);
+        Debug.Log(joystickAngleY);
+        if(joystickAngleX >= .81f || joystickAngleX <= -.81f) {
+        transform.Rotate(0,joystickAngleX * maxRotationSpeed * Time.deltaTime,0);
+        }
+        if(.5 <= joystickAngleY && joystickAngleY <= .7f || joystickAngleY <= -.81f) {
+        transform.Rotate(joystickAngleY * maxRotationSpeed * Time.deltaTime,0,0);
+        }
     }
     
 }
