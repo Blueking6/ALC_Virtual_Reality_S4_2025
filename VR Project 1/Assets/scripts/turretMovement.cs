@@ -17,10 +17,9 @@ public class turretTurn : MonoBehaviour
         joystickAngleX = JoystickA.transform.Find("Hinge").rotation.x;
         joystickAngleY = JoystickB.transform.Find("Hinge").rotation.x;
         Debug.Log(joystickAngleX);
-        Debug.Log(joystickAngleY);
-        if(joystickAngleX >= .81f || joystickAngleX <= -.81f) {
+
         transform.Rotate(0,joystickAngleX * maxRotationSpeed * Time.deltaTime,0);
-        }
+
         if(.5 <= joystickAngleY && joystickAngleY <= .7f || joystickAngleY <= -.81f) {
         transform.Rotate(joystickAngleY * maxRotationSpeed * Time.deltaTime,0,0);
         }
