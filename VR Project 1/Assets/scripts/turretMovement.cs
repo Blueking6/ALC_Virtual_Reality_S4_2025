@@ -9,22 +9,32 @@ public class turretTurn : MonoBehaviour
     public GameObject JoystickB;
     public float joystickAngleX;
     public float joystickAngleY;
+    public float minusY;
+    public float minusX;
     
     void Start() {
         
     }
     void Update() {
         joystickAngleX = JoystickA.transform.Find("Hinge").rotation.x;
+        if (joystickAngleX >= minusX) {
+            joystickAngleX -= minusX;
+        } 
+        if (joystickAngleX <= -minusX) {
+            joystickAngleX += minusX;
+        } 
         joystickAngleY = JoystickB.transform.Find("Hinge").rotation.x;
+        if (joystickAngleY >= minusY) {
+            joystickAngleY -= minusY;
+        } 
+        if (joystickAngleY <= -minusY) {
+            joystickAngleY += minusY;
+        } 
         Debug.Log(joystickAngleX);
 
-        if(.85f >= joystickAngleY || -.45f >= joystickAngleY ){
-        transform.Rotate(0,joystickAngleX * maxRotationSpeed * Time.deltaTime,0);
-        }
+        transform.Rotate(0,joystickAngleY * maxRotationSpeed * Time.deltaTime,0);
 
-        if(.5f <= joystickAngleY && joystickAngleY <= .7f || joystickAngleY <= -.81f) {
-        transform.Rotate(joystickAngleY * maxRotationSpeed * Time.deltaTime,0,0);
-        }
+        transform.Rotate(joystickAngleX * maxRotationSpeed * Time.deltaTime,0,0);
     }
     
 }
